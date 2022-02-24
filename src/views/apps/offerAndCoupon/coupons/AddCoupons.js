@@ -20,32 +20,31 @@ export class AddCoupons extends Component {
     super(props);
 
     this.state = {
-      CouponTitle: "",
-      product: "",
+      offer_code: "",
+      coupon_title: "",
       description: "",
       startDate: "",
       expireOn: "",
-      usage_limit: "",
       amount: "",
-      status: "",
+      status: ""
     };
-    this.state = {
-      productS: [],
-    };
+    // this.state = {
+    //   productS: [],
+    // };
   }
 
-  async componentDidMount() {
-    //Product List
-    axiosConfig
-      .get("/getproduct")
-      .then((response) => {
-        console.log(response);
-        this.setState({ productS: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // async componentDidMount() {
+  //   //Product List
+  //   axiosConfig
+  //     .get("/getproduct")
+  //     .then((response) => {
+  //       console.log(response);
+  //       this.setState({ productS: response.data.data });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
@@ -57,11 +56,13 @@ export class AddCoupons extends Component {
     e.preventDefault();
 
     axiosConfig
-      .post("/addcoupon", this.state, {
-        headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
-        },
-      })
+      .post("/addcoupon", this.state, 
+      // {
+      //   headers: {
+      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+      //   },
+      // }
+      )
       .then((response) => {
         console.log(response);
         swal("Success!", "Submitted SuccessFull!", "success");
@@ -95,31 +96,25 @@ export class AddCoupons extends Component {
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
-                <Col lg="6" md="6" className="mb-2">
-                  <Label>Coupon Title </Label>
+              <Col lg="6" md="6" className="mb-2">
+                  <Label>Offer Code </Label>
                   <Input
                     type="text"
-                    name="CouponTitle"
-                    value={this.state.CouponTitle}
+                    name="offer_code"
+                    value={this.state.offer_code}
                     onChange={this.changeHandler}
                   />
                 </Col>
                 <Col lg="6" md="6" className="mb-2">
-                  <Label>Product </Label>
-                  <CustomInput
-                    type="select"
-                    name="product"
-                    value={this.state.product}
+                  <Label>Coupon Title </Label>
+                  <Input
+                    type="text"
+                    name="coupon_title"
+                    value={this.state.coupon_title}
                     onChange={this.changeHandler}
-                  >
-                    <option>Select Product</option>
-                    {this.state.productS.map((productH) => (
-                      <option key={productH._id} value={productH._id}>
-                        {productH.product_name}
-                      </option>
-                    ))}
-                  </CustomInput>
+                  />
                 </Col>
+              
                 <Col lg="6" md="6" className="mb-2">
                   <Label>Description </Label>
                   <Input
@@ -150,7 +145,7 @@ export class AddCoupons extends Component {
                   />
                 </Col>
 
-                <Col lg="6" md="6" className="mb-2">
+                {/* <Col lg="6" md="6" className="mb-2">
                   <Label>Usage Limit</Label>
                   <Input
                     type="text"
@@ -158,7 +153,7 @@ export class AddCoupons extends Component {
                     value={this.state.usage_limit}
                     onChange={this.changeHandler}
                   />
-                </Col>
+                </Col> */}
                 <Col lg="6" md="6" className="mb-1">
                   <Label>Amount </Label>
                   <Input

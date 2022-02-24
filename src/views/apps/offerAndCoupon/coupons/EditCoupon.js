@@ -20,34 +20,34 @@ export class EditCoupon extends Component {
     super(props);
 
     this.state = {
-      CouponTitle: "",
-
+      offer_code: "",
+      coupon_title: "",
       description: "",
       startDate: "",
       expireOn: "",
-
       amount: "",
-      status: "",
+      status: ""
     };
   }
 
   async componentDidMount() {
     let { id } = this.props.match.params;
     axiosConfig
-      .get(`/getonecoupon/${id}`, {
-        headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
-        },
-      })
+      .get(`/getonecoupon/${id}`,
+      // {
+      //   headers: {
+      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+      //   },
+      // }
+      )
       .then((response) => {
         console.log(response);
         this.setState({
-          CouponTitle: response.data.data.CouponTitle,
-          product: response.data.data.product,
+          offer_code: response.data.data.offer_code,
+          coupon_title: response.data.data.coupon_title,
           description: response.data.data.description,
           startDate: response.data.data.startDate,
           expireOn: response.data.data.expireOn,
-          usage_limit: response.data.data.usage_limit,
           amount: response.data.data.amount,
           status: response.data.data.status,
         });
@@ -67,11 +67,13 @@ export class EditCoupon extends Component {
     e.preventDefault();
     let { id } = this.props.match.params;
     axiosConfig
-      .post(`/editcoupon/${id}`, this.state, {
-        headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
-        },
-      })
+      .post(`/editcoupon/${id}`, this.state, 
+      // {
+      //   headers: {
+      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+      //   },
+      // }
+      )
       .then((response) => {
         console.log(response);
         swal("Success!", "Submitted SuccessFull!", "success");
@@ -105,12 +107,21 @@ export class EditCoupon extends Component {
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
+              <Col lg="6" md="6" className="mb-2">
+                  <Label>Offer Code </Label>
+                  <Input
+                    type="text"
+                    name="offer_code"
+                    value={this.state.offer_code}
+                    onChange={this.changeHandler}
+                  />
+                </Col>
                 <Col lg="6" md="6" className="mb-2">
                   <Label>Coupon Title </Label>
                   <Input
                     type="text"
-                    name="CouponTitle"
-                    value={this.state.CouponTitle}
+                    name="coupon_title"
+                    value={this.state.coupon_title}
                     onChange={this.changeHandler}
                   />
                 </Col>

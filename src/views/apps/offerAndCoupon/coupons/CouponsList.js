@@ -60,13 +60,13 @@ class CouponsList extends React.Component {
       },
       {
         headerName: "Coupon Title",
-        field: "CouponTitle",
+        field: "coupon_title",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="">
-              <span>{params.data.CouponTitle}</span>
+              <span>{params.data.coupon_title}</span>
             </div>
           );
         },
@@ -179,11 +179,13 @@ class CouponsList extends React.Component {
 
   async componentDidMount() {
     await axiosConfig
-      .get("/getcoupon", {
-        headers: {
-          "auth-adtoken": localStorage.getItem("auth-adtoken"),
-        },
-      })
+      .get("/getcoupon", 
+      // {
+      //   headers: {
+      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+      //   },
+      // }
+      )
       .then((response) => {
         let rowData = response.data.data;
         console.log(rowData);

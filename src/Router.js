@@ -497,7 +497,7 @@ class AppRouter extends React.Component {
             component={addCoupons}
           />
           <AppRoute
-            path="/app/offerAndCoupon/coupons/editCoupon"
+            path="/app/offerAndCoupon/coupons/editCoupon/:id"
             component={editCoupon}
           />
           <AppRoute
