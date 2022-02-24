@@ -18,6 +18,7 @@ import { Edit, Trash2, ChevronDown } from "react-feather";
 import { history } from "../../../../history";
 // import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+
 import "../../../../assets/scss/pages/users.scss";
 
 class CouponsList extends React.Component {
@@ -37,47 +38,77 @@ class CouponsList extends React.Component {
         headerName: "S.No",
         valueGetter: "node.rowIndex + 1",
         field: "node.rowIndex + 1",
-        width: 150,
+        width: 100,
         filter: true,
         // checkboxSelection: true,
         // headerCheckboxSelectionFilteredOnly: true,
         // headerCheckboxSelection: true,
       },
+
       {
-        headerName: "Coupon Title",
-        field: "CouponTitle",
-        filter: false,
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className=" mr-4">
-              <span>{params.data.CouponTitle}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Offer Code",
+        headerName: "Coupon Code",
         field: "offer_code",
-        filter: false,
-        width: 120,
+        filter: true,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
-            <div className=" mr-4">
+            <div className="">
               <span>{params.data.offer_code}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Product Name ",
-        field: "product",
-        filter: false,
+        headerName: "Coupon Title",
+        field: "CouponTitle",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="">
+              <span>{params.data.CouponTitle}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Start Date",
+        field: "startDate",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="">
+              <span>{params.data.startDate}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Expire On",
+        field: "expireOn",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className=" mr-4">
+              <span>{params.data.expireOn}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Amont",
+        field: "amount",
+        filter: true,
         width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className=" mr-4">
-              <span>{params.data.product?.product_name}</span>
+              <span>{params.data.amount}</span>
             </div>
           );
         },
@@ -95,58 +126,7 @@ class CouponsList extends React.Component {
           );
         },
       },
-      {
-        headerName: "Start Date",
-        field: " startDate",
-        filter: true,
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="">
-              <span>{params.data.startDate}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Expire On",
-        field: "expireOn",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="">
-              <span>{params.data.expireOn}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Usage Limit",
-        field: "usage_limit",
-        filter: true,
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className=" mr-4">
-              <span>{params.data.usage_limit}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Amount",
-        field: "amount",
-        filter: true,
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className=" mr-4">
-              <span>{params.data.amount}</span>
-            </div>
-          );
-        },
-      },
+
       {
         headerName: "Status",
         field: "status",
@@ -171,19 +151,19 @@ class CouponsList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Edit
+              <Edit
                 className="mr-50"
                 size={15}
-                // onClick={() =>
-                //   history.push(
-                //     `/app/products/brand/editBrand/${params.data._id}`
-                //   )
-                // }
-              /> */}
+                color="blue"
+                onClick={() =>
+                  history.push(
+                    `/app/offerAndCoupon/coupons/editCoupon/${params.data._id}`
+                  )
+                }
+              />
               <Trash2
-                 className="mr-50"
-                 size="25px"
-                 color="red"
+                size={15}
+                color="red"
                 onClick={() => {
                   let selectedData = this.gridApi.getSelectedRows();
                   this.runthisfunction(params.data._id);
@@ -198,11 +178,17 @@ class CouponsList extends React.Component {
   };
 
   async componentDidMount() {
-    await axiosConfig.get("/getcoupon").then((response) => {
-      let rowData = response.data.data;
-      console.log(rowData);
-      this.setState({ rowData });
-    });
+    await axiosConfig
+      .get("/getcoupon", {
+        headers: {
+          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        },
+      })
+      .then((response) => {
+        let rowData = response.data.data;
+        console.log(rowData);
+        this.setState({ rowData });
+      });
   }
 
   async runthisfunction(id) {
@@ -211,7 +197,7 @@ class CouponsList extends React.Component {
       console.log(response);
     });
   }
-  
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -235,14 +221,12 @@ class CouponsList extends React.Component {
       });
     }
   };
-  
+
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <Row className="app-user-list">
-        <Col sm="12">
-         
-        </Col>
+        <Col sm="12"></Col>
         <Col sm="12">
           <Card>
             <Row className="m-2">
@@ -251,7 +235,16 @@ class CouponsList extends React.Component {
                   Coupon List
                 </h1>
               </Col>
-              
+              <Col>
+                <Button
+                  className=" btn btn-danger float-right"
+                  onClick={() =>
+                    history.push("/app/offerAndCoupon/coupons/addCoupons")
+                  }
+                >
+                  Add New Coupons
+                </Button>
+              </Col>
             </Row>
             <CardBody>
               {this.state.rowData === null ? null : (
@@ -349,4 +342,5 @@ class CouponsList extends React.Component {
     );
   }
 }
+
 export default CouponsList;

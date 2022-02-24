@@ -15,32 +15,42 @@ import { history } from "../../../../history";
 import axiosConfig from "../../../../axiosConfig";
 import swal from "sweetalert";
 
-export class AddCoupons extends Component {
+export class EditCoupon extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       CouponTitle: "",
-      product: "",
+
       description: "",
       startDate: "",
       expireOn: "",
-      usage_limit: "",
+
       amount: "",
       status: "",
-    };
-    this.state = {
-      productS: [],
     };
   }
 
   async componentDidMount() {
-    //Product List
+    let { id } = this.props.match.params;
     axiosConfig
-      .get("/getproduct")
+      .get(`/getonecoupon/${id}`, {
+        headers: {
+          "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        },
+      })
       .then((response) => {
         console.log(response);
-        this.setState({ productS: response.data.data });
+        this.setState({
+          CouponTitle: response.data.data.CouponTitle,
+          product: response.data.data.product,
+          description: response.data.data.description,
+          startDate: response.data.data.startDate,
+          expireOn: response.data.data.expireOn,
+          usage_limit: response.data.data.usage_limit,
+          amount: response.data.data.amount,
+          status: response.data.data.status,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -55,9 +65,9 @@ export class AddCoupons extends Component {
   };
   submitHandler = (e) => {
     e.preventDefault();
-
+    let { id } = this.props.match.params;
     axiosConfig
-      .post("/addcoupon", this.state, {
+      .post(`/editcoupon/${id}`, this.state, {
         headers: {
           "auth-adtoken": localStorage.getItem("auth-adtoken"),
         },
@@ -78,7 +88,7 @@ export class AddCoupons extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Add Coupons
+                Edit Coupons
               </h1>
             </Col>
             <Col>
@@ -104,22 +114,7 @@ export class AddCoupons extends Component {
                     onChange={this.changeHandler}
                   />
                 </Col>
-                <Col lg="6" md="6" className="mb-2">
-                  <Label>Product </Label>
-                  <CustomInput
-                    type="select"
-                    name="product"
-                    value={this.state.product}
-                    onChange={this.changeHandler}
-                  >
-                    <option>Select Product</option>
-                    {this.state.productS.map((productH) => (
-                      <option key={productH._id} value={productH._id}>
-                        {productH.product_name}
-                      </option>
-                    ))}
-                  </CustomInput>
-                </Col>
+
                 <Col lg="6" md="6" className="mb-2">
                   <Label>Description </Label>
                   <Input
@@ -150,15 +145,6 @@ export class AddCoupons extends Component {
                   />
                 </Col>
 
-                <Col lg="6" md="6" className="mb-2">
-                  <Label>Usage Limit</Label>
-                  <Input
-                    type="text"
-                    name="usage_limit"
-                    value={this.state.usage_limit}
-                    onChange={this.changeHandler}
-                  />
-                </Col>
                 <Col lg="6" md="6" className="mb-1">
                   <Label>Amount </Label>
                   <Input
@@ -220,4 +206,4 @@ export class AddCoupons extends Component {
   }
 }
 
-export default AddCoupons;
+export default EditCoupon;

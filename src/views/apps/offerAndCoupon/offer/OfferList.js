@@ -33,7 +33,6 @@ class OfferList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-  
       {
         headerName: "S.No",
         valueGetter: "node.rowIndex + 1",
@@ -97,8 +96,7 @@ class OfferList extends React.Component {
           );
         },
       },
-   
-      
+
       // {
       //   headerName: "Seller",
       //   field: "seller",
@@ -159,9 +157,9 @@ class OfferList extends React.Component {
                 // }
               /> */}
               <Trash2
-                  className="mr-50"
-                  size="25px"
-                  color="red"
+                className="mr-50"
+                size="25px"
+                color="red"
                 onClick={() => {
                   let selectedData = this.gridApi.getSelectedRows();
                   this.runthisfunction(params.data._id);
@@ -213,14 +211,12 @@ class OfferList extends React.Component {
       });
     }
   };
-  
+
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <Row className="app-user-list">
-        <Col sm="12">
-         
-        </Col>
+        <Col sm="12"></Col>
         <Col sm="12">
           <Card>
             <Row className="m-2">
