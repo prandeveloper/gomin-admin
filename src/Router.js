@@ -9,11 +9,9 @@ import knowledgeBaseQuestion from "./views/pages/knowledge-base/Questions";
 import { ContextLayout } from "./utility/context/Layout";
 
 const analyticsDashboard = lazy(() =>
-  import("./views/dashboard/analytics/AnalyticsDashboard")
-);
+  import("./views/dashboard/analytics/AnalyticsDashboard"));
 const ecommerceDashboard = lazy(() =>
-  import("./views/dashboard/ecommerce/EcommerceDashboard")
-);
+  import("./views/dashboard/ecommerce/EcommerceDashboard"));
 // const sellerDashboard = lazy(()=> import("./views/dashboard/seller/SellerDeshboard"));
 
 // My Component starts here
@@ -32,33 +30,26 @@ const editProducts = lazy(() => import("./views/apps/products/EditProducts"));
 const viewProducts = lazy(() => import("./views/apps/products/ViewProducts"));
 const addProducts = lazy(() => import("./views/apps/products/AddProducts"));
 const pendingPayment = lazy(() =>
-  import("./views/apps/pendingPayment/PendingPayment")
-);
+  import("./views/apps/pendingPayment/PendingPayment"));
 const unitList = lazy(() => import("./views/apps/products/unit/UnitList"));
 const addUnit = lazy(() => import("./views/apps/products/unit/AddUnit"));
 const editUnit = lazy(() => import("./views/apps/products/unit/EditUnit"));
 const varientList = lazy(() =>
-  import("./views/apps/products/varient/VarientList")
-);
+  import("./views/apps/products/varient/VarientList"));
 const coupon = lazy(() => import("./views/apps/products/coupon/Coupon"));
 const allOrder = lazy(() => import("./views/apps/order/AllOrder"));
 
 const status = lazy(() => import("./views/apps/order/Status"));
 const offerList = lazy(() =>
-  import("./views/apps/offerAndCoupon/offer/OfferList")
-);
+  import("./views/apps/offerAndCoupon/offer/OfferList"));
 const addSpecialOffer = lazy(() =>
-  import("./views/apps/offerAndCoupon/specialOffer/AddSpecialOffer")
-);
+  import("./views/apps/offerAndCoupon/specialOffer/AddSpecialOffer"));
 const couponsList = lazy(() =>
-  import("./views/apps/offerAndCoupon/coupons/CouponsList")
-);
+  import("./views/apps/offerAndCoupon/coupons/CouponsList"));
 const addCoupons = lazy(() =>
-  import("./views/apps/offerAndCoupon/coupons/AddCoupons")
-);
+  import("./views/apps/offerAndCoupon/coupons/AddCoupons"));
 const offerByBrand = lazy(() =>
-  import("./views/apps/offerAndCoupon/OfferByBrand")
-);
+  import("./views/apps/offerAndCoupon/OfferByBrand"));
 const buyGet = lazy(() => import("./views/apps/offerAndCoupon/BuyGet"));
 const rewardPoint = lazy(() => import("./views/apps/rewards/RewardPoint"));
 const dealOfDay = lazy(() =>

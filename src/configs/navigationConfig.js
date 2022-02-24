@@ -134,14 +134,14 @@ const navigationConfig = [
     type: "collapse",
     icon: < FaGift size={20} />, 
     children: [
-      {
-        id: "offerList",
-        title: "Offers",
-        type: "item",
-        icon: < FaCircle size={12}/>, 
-        permissions: ["admin", "editor"],
-        navLink: "/app/offerAndCoupon/offer/offerList",
-      },
+      // {
+      //   id: "offerList",
+      //   title: "Offers",
+      //   type: "item",
+      //   icon: < FaCircle size={12}/>, 
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/offerAndCoupon/offer/offerList",
+      // },
       {
         id: "couponsList",
         title: "Coupons",

@@ -251,6 +251,7 @@ class CouponsList extends React.Component {
                   Coupon List
                 </h1>
               </Col>
+              
             </Row>
             <CardBody>
               {this.state.rowData === null ? null : (

@@ -53,7 +53,7 @@ class AnalyticsDashboard extends React.Component {
       staff: {},
       banner: {},
       brand: {},
-      Offer: {},
+      // Offer: {},
       total_sub: {},
       Coupon: {}
     };
@@ -132,16 +132,16 @@ class AnalyticsDashboard extends React.Component {
         .catch((error) => {
           console.log(error);
         });
-        axiosConfig
-        .get("/totalOffer")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ Offer: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        // axiosConfig
+        // .get("/totalOffer")
+        // .then((response) => {
+        //   console.log(response.data);
+        //   //console.log(response.data.data);
+        //   this.setState({ Offer: response.data });
+        // })
+        // .catch((error) => {
+        //   console.log(error);
+        // });
         axiosConfig
         .get("/gettotalcoupon")
         .then((response) => {
@@ -269,16 +269,7 @@ class AnalyticsDashboard extends React.Component {
             </CardText>
           </Card>
         </Col>
-        <Col lg="3" md="12">
-        <Card className="bg-primary" body inverse>
-          <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-            Total Offers
-          </CardTitle>
-          <CardText tag="h3" style={{ color: "white" }}>
-          {this.state.Offer.data}
-          </CardText>
-        </Card>
-      </Col>
+       
         </Row>
 
         {/* theme Componets  */}
