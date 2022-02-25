@@ -27,20 +27,19 @@ const editCustomer = lazy(() => import("./views/apps/customer/EditCustomer"));
 const viewCustomer = lazy(() => import("./views/apps/customer/ViewCustomer"));
 const addUsers = lazy(() => import("./views/apps/users/user/AddUsers"));
 const viewUsers = lazy(() => import("./views/apps/users/user/ViewUsers"));
-const productsList = lazy(() => import("./views/apps/products/ProductsList"));
-const editProducts = lazy(() => import("./views/apps/products/EditProducts"));
-const viewProducts = lazy(() => import("./views/apps/products/ViewProducts"));
-const addProducts = lazy(() => import("./views/apps/products/AddProducts"));
+
 const pendingPayment = lazy(() =>
   import("./views/apps/pendingPayment/PendingPayment")
 );
-const unitList = lazy(() => import("./views/apps/products/unit/UnitList"));
-const addUnit = lazy(() => import("./views/apps/products/unit/AddUnit"));
-const editUnit = lazy(() => import("./views/apps/products/unit/EditUnit"));
-const varientList = lazy(() =>
-  import("./views/apps/products/varient/VarientList")
-);
-const coupon = lazy(() => import("./views/apps/products/coupon/Coupon"));
+
+const simpleProductList = lazy(() => import("./views/apps/productManagement/simpleProduct/SimpleProductList"));
+const addSimpleProduct = lazy(() => import("./views/apps/productManagement/simpleProduct/AddSimpleProduct"));
+const editSimpleProduct = lazy(() => import("./views/apps/productManagement/simpleProduct/EditSimpleProduct"));
+const viewSimpleProduct = lazy(() => import("./views/apps/productManagement/simpleProduct/ViewSimpleProduct"));
+
+
+
+// const coupon = lazy(() => import("./views/apps/products/coupon/Coupon"));
 const allOrder = lazy(() => import("./views/apps/order/AllOrder"));
 
 const status = lazy(() => import("./views/apps/order/Status"));
@@ -450,34 +449,24 @@ class AppRouter extends React.Component {
             path="/app/users/user/viewUsers/:id"
             component={viewUsers}
           />
-          <AppRoute
-            path="/app/products/productsList"
-            component={productsList}
-          />
-          <AppRoute
-            path="/app/products/editProducts"
-            component={editProducts}
-          />
-          <AppRoute
-            path="/app/products/viewProducts/:id"
-            component={viewProducts}
-          />
-          <AppRoute path="/app/products/addProducts" component={addProducts} />
+     
+      
+       
+          
           <AppRoute
             path="/app/pendingPayment/pendingPayment"
             component={pendingPayment}
           />
-          <AppRoute path="/app/products/unit/unitList" component={unitList} />
-          <AppRoute path="/app/products/unit/addUnit" component={addUnit} />
-          <AppRoute
-            path="/app/products/unit/editUnit/:id"
-            component={editUnit}
-          />
-          <AppRoute
-            path="/app/products/varient/varientList"
-            component={varientList}
-          />
-          <AppRoute path="/app/products/coupon" component={coupon} />
+        
+         
+          
+          <AppRoute path="/app/productManagement/simpleProduct/simpleProductList" component={simpleProductList} />
+          <AppRoute path="/app/productManagement/simpleProduct/addSimpleProduct" component={addSimpleProduct} />
+          <AppRoute path="/app/productManagement/simpleProduct/editSimpleProduct" component={editSimpleProduct} />
+          <AppRoute path="/app/productManagement/simpleProduct/viewSimpleProduct/:id" component={viewSimpleProduct} />
+         
+
+          {/* <AppRoute path="/app/products/coupon" component={coupon} /> */}
           <AppRoute path="/app/order/allorder" component={allOrder} />
           <AppRoute path="/app/order/status" component={status} />
           <AppRoute

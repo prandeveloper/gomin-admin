@@ -11,16 +11,22 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
-import { ContextLayout } from "../../../utility/context/Layout";
+
+import axiosConfig from "../../../../axiosConfig";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
 import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
 //import classnames from "classnames";
-import { history } from "../../../history";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import "../../../assets/scss/pages/users.scss";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2,
+} from "react-html-parser";
+import { history } from "../../../../history";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../../assets/scss/pages/users.scss";
 
-class ProductsList extends React.Component {
+class SimpleProductList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -34,62 +40,73 @@ class ProductsList extends React.Component {
     },
 
     columnDefs: [
-      
       {
-        headerName: "S.No",
+        headerName: "",
         valueGetter: "node.rowIndex + 1",
-        field: "node.rowIndex + 1",
-        width: 150,
+        field: "id",
+        width: 80,
         filter: true,
         // checkboxSelection: true,
         // headerCheckboxSelectionFilteredOnly: true,
         // headerCheckboxSelection: true,
       },
-      
       {
-        headerName: "Product Image",
+        headerName: "Image",
         field: "product_img",
         filter: false,
-        width: 150,
+        width: 200,
         setColumnVisible: false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <img
-                className=" rounded-circle  mr-3"
-                src={params.data.product_img}
-                alt="user avatar"
-                height="40"
-                width="40"
-              />
+              {params.data.product_img.map((i) => (
+                <img
+                  className=" rounded-circle border-black m-0"
+                  src={i}
+                  alt="user avatar"
+                  height="40"
+                  width="40"
+                />
+              ))}
             </div>
           );
         },
       },
-
       {
         headerName: "Product Name",
-        field: "item_name",
+        field: "product_name",
         filter: true,
-        width: 200,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
-            <div>
-              <span>{params.data.item_name}</span>
+            <div className="d-flex justify-content-center">
+              <span>{params.data.product_name}</span>
             </div>
           );
         },
       },
-
       {
-        headerName: "Product Code",
-        field: "code",
+        headerName: "SKU No.",
+        field: "sku_no",
         filter: true,
-        width: 200,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.code}</span>
+            <div className="d-flex justify-content-center">
+              <span>{params.data.sku_no}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "HSN/SAC",
+        field: "hsn_sac_no",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.hsn_sac_no}</span>
             </div>
           );
         },
@@ -109,105 +126,78 @@ class ProductsList extends React.Component {
       },
       {
         headerName: "Description",
-        field: "desc",
+        field: "long_desc",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
           return (
-            <div>
-              <span>{params.data.desc}</span>
+            <div className="mt-1">
+              <span>{ReactHtmlParser(params.data.long_desc)}</span>
             </div>
           );
         },
       },
       {
-        headerName: "HSN Code",
-        field: "hsn_code",
+        headerName: "Category",
+        field: "productcategory?.name",
         filter: true,
         width: 180,
         cellRendererFramework: (params) => {
           return (
-            <div>
-              <span>{params.data.hsn_code}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Brand",
-        field: "brand",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.brand?.name}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Product Category",
-        field: "productcategory?.name",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
+            <div className="d-flex justify-content-center">
               <span>{params.data.productcategory?.name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Product Sub-Category",
-        field: "productsubcategory",
+        headerName: "Sub-Category",
+        field: "productsubcategory?.name",
         filter: true,
-        width: 200,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
-            <div>
+            <div className="d-flex justify-content-center">
               <span>{params.data.productsubcategory?.name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Stock Quantity",
-        field: "stock_qty",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.stock_qty}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Size",
-        field: "size",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.size}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Colour",
-        field: "colour",
+        headerName: "Brand",
+        field: "brand?.name",
         filter: true,
         width: 180,
         cellRendererFramework: (params) => {
           return (
-            <div>
-              <span>{params.data.colour}</span>
+            <div className="d-flex justify-content-center">
+              <span>{params.data.brand?.name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Product Tag",
+        field: "tag",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.tag}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Units",
+        field: "unit?.units_title",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.unit?.units_title}</span>
             </div>
           );
         },
@@ -219,26 +209,136 @@ class ProductsList extends React.Component {
         width: 180,
         cellRendererFramework: (params) => {
           return (
-            <div>
+            <div className="d-flex justify-content-center">
               <span>{params.data.material}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Barcode",
-        field: "barcode",
+        headerName: "Cost Price",
+        field: "cost_price",
         filter: true,
-        width: 180,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
-            <div>
-              <span>{params.data.barcode}</span>
+            <div className="d-flex justify-content-center">
+              <span>{params.data.cost_price}</span>
             </div>
           );
         },
       },
-
+      {
+        headerName: "Selling Price",
+        field: "sell_price",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.sell_price}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "GST Rate",
+        field: "gst",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.gst}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Size",
+        field: "size",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+                {params.data.size.map((i) => (
+             <span>{i.sizeName}</span>
+             
+              ))}
+              
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Color",
+        field: "color",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+                  {params.data.color.map((i) => (
+             <span>{i.colorName}</span>
+             
+             ))}
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Stk Quantity",
+        field: "qty",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.qty}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Stock Avilable",
+        field: "stock",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.stock}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Stock Avilable",
+        field: "stock",
+        filter: true,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.stock}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Reorder Level",
+        field: "reorder_level",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex justify-content-center">
+              <span>{params.data.reorder_level}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Status",
         field: "status",
@@ -256,7 +356,6 @@ class ProductsList extends React.Component {
           ) : null;
         },
       },
-
       {
         headerName: "Actions",
         field: "transactions",
@@ -266,18 +365,25 @@ class ProductsList extends React.Component {
             <div className="actions cursor-pointer">
               <Eye
                 className="mr-50"
-                size={20}
+                size="25px"
+                color="green"
                 onClick={() =>
-                  history.push(`/app/products/viewProducts/${params.data._id}`)
+                  history.push(
+                    `/app/productManagement/simpleProduct/viewSimpleProduct/${params.data._id}`
+                   
+                  )
                 }
               />
-              <Edit
+              {/* <Edit
                 className="mr-50"
-                size={20}
-                onClick={() => history.push("/app/user/edit")}
-              />
+                 size="25px"
+                 color="blue"
+                onClick={() => history.push(`/app/products/product/editProducts/${params.data._id}`)}
+              /> */}
               <Trash2
-                size={20}
+                 className="mr-50"
+                 size="25px"
+                 color="red"
                 onClick={() => {
                   let selectedData = this.gridApi.getSelectedRows();
                   this.runthisfunction(params.data._id);
@@ -290,7 +396,6 @@ class ProductsList extends React.Component {
       },
     ],
   };
-
   async componentDidMount() {
     await axiosConfig.get("/getproduct").then((response) => {
       const rowData = response.data.data;
@@ -300,7 +405,7 @@ class ProductsList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/delproduct/${id}`).then(
+    await axiosConfig.get(`/del_product/${id}`).then(
       (response) => {
         console.log(response);
       },
@@ -334,170 +439,12 @@ class ProductsList extends React.Component {
   };
 
   render() {
-    const { rowData, columnDefs, defaultColDef } = this.state;
+    const { rowData, columnDefs, defaultColDef, variation } = this.state;
     return (
-      console.log(rowData),
+      console.log(variation),
       (
         <Row className="app-user-list">
-          <Col sm="12">
-            {/* <Card
-            className={classnames("card-action card-reload", {
-              "d-none": this.state.isVisible === false,
-              "card-collapsed": this.state.status === "Closed",
-              closing: this.state.status === "Closing...",
-              opening: this.state.status === "Opening...",
-              refreshing: this.state.reload,
-            })}
-          >
-            <CardHeader>
-              <CardTitle>Filters</CardTitle>
-              <div className="actions">
-                <ChevronDown
-                  className="collapse-icon mr-50"
-                  size={15}
-                  onClick={this.toggleCollapse}
-                />
-                <RotateCw
-                  className="mr-50"
-                  size={15}
-                  onClick={() => {
-                    this.refreshCard();
-                    this.gridApi.setFilterModel(null);
-                  }}
-                />
-                <X size={15} onClick={this.removeCard} />
-              </div>
-            </CardHeader>
-            <Collapse
-              isOpen={this.state.collapse}
-              onExited={this.onExited}
-              onEntered={this.onEntered}
-              onExiting={this.onExiting}
-              onEntering={this.onEntering}
-            >
-              <CardBody>
-                {this.state.reload ? (
-                  <Spinner color="primary" className="reload-spinner" />
-                ) : (
-                  ""
-                )}
-                <Row>
-                  <Col lg="3" md="6" sm="12">
-                    <FormGroup className="mb-0">
-                      <Label for="role">Role</Label>
-                      <Input
-                        type="select"
-                        name="role"
-                        id="role"
-                        value={this.state.role}
-                        onChange={(e) => {
-                          this.setState(
-                            {
-                              role: e.target.value,
-                            },
-                            () =>
-                              this.filterData(
-                                "role",
-                                this.state.role.toLowerCase()
-                              )
-                          );
-                        }}
-                      >
-                        <option value="All">All</option>
-                        <option value="User">User</option>
-                        <option value="Staff">Staff</option>
-                        <option value="Admin">Admin</option>
-                      </Input>
-                    </FormGroup>
-                  </Col>
-                  <Col lg="3" md="6" sm="12">
-                    <FormGroup className="mb-0">
-                      <Label for="status">Status</Label>
-                      <Input
-                        type="select"
-                        name="status"
-                        id="status"
-                        value={this.state.selectStatus}
-                        onChange={(e) => {
-                          this.setState(
-                            {
-                              selectStatus: e.target.value,
-                            },
-                            () =>
-                              this.filterData(
-                                "status",
-                                this.state.selectStatus.toLowerCase()
-                              )
-                          );
-                        }}
-                      >
-                        <option value="All">All</option>
-                        <option value="Active">Active</option>
-                        <option value="Blocked">Blocked</option>
-                        <option value="Deactivated">Deactivated</option>
-                      </Input>
-                    </FormGroup>
-                  </Col>
-                  <Col lg="3" md="6" sm="12">
-                    <FormGroup className="mb-0">
-                      <Label for="verified">Verified</Label>
-                      <Input
-                        type="select"
-                        name="verified"
-                        id="verified"
-                        value={this.state.verified}
-                        onChange={(e) => {
-                          this.setState(
-                            {
-                              verified: e.target.value,
-                            },
-                            () =>
-                              this.filterData(
-                                "is_verified",
-                                this.state.verified.toLowerCase()
-                              )
-                          );
-                        }}
-                      >
-                        <option value="All">All</option>
-                        <option value="True">True</option>
-                        <option value="False">False</option>
-                      </Input>
-                    </FormGroup>
-                  </Col>
-                  <Col lg="3" md="6" sm="12">
-                    <FormGroup className="mb-0">
-                      <Label for="department">Department</Label>
-                      <Input
-                        type="select"
-                        name="department"
-                        id="department"
-                        value={this.state.department}
-                        onChange={(e) => {
-                          this.setState(
-                            {
-                              department: e.target.value,
-                            },
-                            () =>
-                              this.filterData(
-                                "department",
-                                this.state.department.toLowerCase()
-                              )
-                          );
-                        }}
-                      >
-                        <option value="All">All</option>
-                        <option value="Sales">Sales</option>
-                        <option value="Development">Development</option>
-                        <option value="Management">Management</option>
-                      </Input>
-                    </FormGroup>
-                  </Col>
-                </Row>
-              </CardBody>
-            </Collapse>
-          </Card> */}
-          </Col>
+          <Col sm="12"></Col>
           <Col sm="12">
             <Card>
               <Row className="m-2">
@@ -506,14 +453,16 @@ class ProductsList extends React.Component {
                     Product List
                   </h1>
                 </Col>
-                <Col>
+                {/* <Col>
                   <Button
                     className=" btn btn-danger float-right"
-                    onClick={() => history.push("/app/products/addProducts")}
+                    onClick={() =>
+                      history.push("/app/products/product/addMyProduct")
+                    }
                   >
                     Add Product
                   </Button>
-                </Col>
+                </Col> */}
               </Row>
               <CardBody>
                 {this.state.rowData === null ? null : (
@@ -614,5 +563,4 @@ class ProductsList extends React.Component {
     );
   }
 }
-
-export default ProductsList;
+export default SimpleProductList;

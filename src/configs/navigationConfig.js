@@ -2,7 +2,7 @@ import React from "react";
 import {
   FaHome,
   FaUserEdit,
-  FaFileSignature,
+  ShoppingBag,
   FaAdversal,
   FaStore,
   FaUsers,
@@ -14,7 +14,7 @@ import {
   FaShoppingCart,
   FaGift,
 } from "react-icons/fa";
-// import * as Icon from "react-feather";
+import * as Icon from "react-feather";
 const navigationConfig = [
   {
     id: "dashboard",
@@ -71,6 +71,70 @@ const navigationConfig = [
     ],
   },
   {
+  id: "productManagement",
+  title: "Product Management",
+  type: "collapse",
+  icon: <Icon.ShoppingBag size={20} />,
+  children: [
+     {
+       id: "simpleProductList",
+       title: "Simple Product",
+       type: "item",
+       icon: <Icon.Circle size={12} />,
+       permissions: ["admin", "editor"],
+       navLink: "/app/productManagement/simpleProduct/simpleProductList",
+     },
+    //  {
+    //    id: "variantList",
+    //    title: "Variant",
+    //    type: "item",
+    //    icon: <Icon.Circle size={12} />,
+    //    permissions: ["admin", "editor"],
+    //    navLink: "/app/productManagement/variant/variantList",
+    //  },
+    //  {
+    //    id: "unitsList",
+    //    title: "Units",
+    //    type: "item",
+    //    icon: <Icon.Circle size={12} />,
+    //    permissions: ["admin", "editor"],
+    //    navLink: "/app/productManagement/units/unitsList",
+    // },
+    // {
+    //   id: "allcategory",
+    //   title: "All Category",
+    //   type: "collapse",
+    //   icon: <Icon.Circle size={15} />,
+    //   children: [
+    //     {
+    //       id: "category",
+    //       title: "Category",
+    //       type: "item",
+    //       icon: <Icon.Circle size={12} />,
+    //       permissions: ["admin", "editor"],
+    //       navLink: "/app/productManagement/allCategory/category/category",
+    //     },
+    //     {
+    //       id: "subCategory",
+    //       title: "Sub Category",
+    //       type: "item",
+    //       icon: <Icon.Circle size={12} />,
+    //       permissions: ["admin", "editor"],
+    //       navLink: "/app/productManagement/allCategory/subCategory/subCategory",
+    //     },
+    //     {
+    //       id: "childCategory",
+    //       title: "Child Category",
+    //       type: "item",
+    //       icon: <Icon.Circle size={12} />,
+    //       permissions: ["admin", "editor"],
+    //       navLink: "/app/productManagement/allCategory/childCategory/childCategory",
+    //     },
+    //   ],
+    // },
+  ]
+},
+  {
     id: "store",
     title: "Store",
     type: "collapse",
@@ -84,14 +148,14 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/store/stores/storesList",
       },
-      {
-        id: "storesRequest",
-        title: "Stores Request",
-        type: "item",
-        icon: <FaCircle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/store/storesRequest/storesRequestList",
-      },
+      // {
+      //   id: "storesRequest",
+      //   title: "Stores Request",
+      //   type: "item",
+      //   icon: <FaCircle size={12} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/store/storesRequest/storesRequestList",
+      // },
     ],
   },
   {

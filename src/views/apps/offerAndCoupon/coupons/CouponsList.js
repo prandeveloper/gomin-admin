@@ -153,7 +153,7 @@ class CouponsList extends React.Component {
             <div className="actions cursor-pointer">
               <Edit
                 className="mr-50"
-                size={15}
+                size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
@@ -162,7 +162,7 @@ class CouponsList extends React.Component {
                 }
               />
               <Trash2
-                size={15}
+                size="25px"
                 color="red"
                 onClick={() => {
                   let selectedData = this.gridApi.getSelectedRows();
