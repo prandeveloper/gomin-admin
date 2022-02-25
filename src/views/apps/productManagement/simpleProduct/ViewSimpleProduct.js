@@ -75,7 +75,7 @@ class ViewSimpleProduct extends React.Component {
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                  history.push("/app/products/product/productsList")
+                  history.push("/app/productManagement/simpleProduct/simpleProductList")
                 }
               >
                 Back
