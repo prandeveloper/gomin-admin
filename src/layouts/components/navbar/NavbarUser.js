@@ -85,6 +85,8 @@ const UserDropdown = (props) => {
               return props.logoutWithFirebase();
             }
           } else {
+            localStorage.removeItem("token");
+            localStorage.clear();
             history.push("/pages/login");
           }
         }}
@@ -158,6 +160,10 @@ class NavbarUser extends React.PureComponent {
   };
 
   componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if(accessToken === null || accessToken === undefined){
+      history.push("/pages/login");
+    }
     axios.get("/api/main-search/data").then(({ data }) => {
       this.setState({ suggestions: data.searchResult });
     });

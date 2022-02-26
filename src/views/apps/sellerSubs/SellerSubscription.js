@@ -47,19 +47,19 @@ class SellerSubscription extends React.Component {
       },
      
      
-      // {
-      //   headerName: "Seller",
-      //   field: "seller",
-      //   filter: true,
-      //   width: 200,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div>
-      //         <span>{params.data.seller}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+      {
+        headerName: "Seller",
+        field: "seller",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.seller}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Description",
         field: "description",
