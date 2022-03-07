@@ -19,7 +19,6 @@ import { Eye, Edit, Trash2, ChevronDown } from "react-feather";
 import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
-
 class SellerSubscription extends React.Component {
   state = {
     rowData: [],
@@ -43,22 +42,6 @@ class SellerSubscription extends React.Component {
         // checkboxSelection: true,
         // headerCheckboxSelectionFilteredOnly: true,
         // headerCheckboxSelection: true, 
-    
-      },
-     
-     
-      {
-        headerName: "Seller",
-        field: "seller",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.seller}</span>
-            </div>
-          );
-        },
       },
       {
         headerName: "Description",
@@ -86,7 +69,6 @@ class SellerSubscription extends React.Component {
           );
         },
       },
-   
       {
         headerName: "Duration ",
         field: "duration",
@@ -113,7 +95,6 @@ class SellerSubscription extends React.Component {
           );
         },
       },
-    
       {
         headerName: "Sort Order ",
         field: "sortorder",
@@ -127,7 +108,6 @@ class SellerSubscription extends React.Component {
           );
         },
       },
-
       {
         headerName: "Status",
         field: "status",
@@ -146,35 +126,6 @@ class SellerSubscription extends React.Component {
          : null;
         },
       },
-      // {
-      //   headerName: "Status",
-      //   field: "status",
-      //   filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return params.value === "Delivery" ? (
-      //       <div className="badge badge-pill badge-success">
-      //         {params.data.status}
-      //       </div>
-      //     ) : params.value === "Pending" ? (
-      //       <div className="badge badge-pill badge-primary">
-      //         {params.data.status}
-      //       </div>
-      //     ) : params.value === "Cancel" ? (
-      //       <div className="badge badge-pill badge-danger">
-      //         {params.data.status}
-      //       </div>
-      //     ) : params.value === "Returned" ? (
-      //       <div className="badge badge-pill badge-warning">
-      //         {params.data.status}
-      //       </div>
-      //     ) : params.value === "Complete" ? (
-      //       <div className="badge badge-pill badge-warning">
-      //         {params.data.status}
-      //       </div>
-      //     ) : null;
-      //   },
-      // },
       {
         headerName: "Actions",
         field: "sortorder",
@@ -182,9 +133,7 @@ class SellerSubscription extends React.Component {
         width: 150,
         cellRendererFramework: (params) => {
           return (<div className="actions cursor-pointer">
-         
-         
-          {/* <Button color="primary" outline className="mr-2">
+         {/* <Button color="primary" outline className="mr-2">
             Create Invoice
           </Button>
           <Button color="primary" outline className="mr-2">
@@ -205,9 +154,9 @@ class SellerSubscription extends React.Component {
               this.gridApi.updateRowData({ remove: selectedData });
             }}
           />
-           <Button color="primary" outline className="mr-2">
+           {/* <Button color="primary" outline className="mr-2">
           Approve
-          </Button>
+          </Button> */}
         </div>
         
           );
@@ -381,5 +330,4 @@ class SellerSubscription extends React.Component {
     );
   }
 }
-
 export default SellerSubscription;

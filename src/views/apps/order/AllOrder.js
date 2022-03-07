@@ -50,84 +50,180 @@ class AllOrder extends React.Component {
         // headerCheckboxSelectionFilteredOnly: true,
         // headerCheckboxSelection: true,
       },
+      
       { 
-        headerName: "First Name",
-        field: "first_name",
+        headerName: "Seller Name",
+        field: "seller.name",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data?.customer?.first_name}</span>
+              <span>{params.data?.seller?.name}</span>
+            </div>
+          );
+        },
+      },
+      { 
+        headerName: "First Name",
+        field: "customer.firstname",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data?.customer?.firstname}</span>
             </div>
           );
         },
       },
       { 
         headerName: "Last Name",
-        field: "last_name",
+        field: "customer.lastname",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data?.customer?.last_name}</span>
+              <span>{params.data?.customer?.lastname}</span>
             </div>
           );
         },
       },
       {
         headerName: "Customer Email",
-        field: "customer.customer_email",
+        field: "customer.email",
         filter: true,
         width: 220,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data?.customer?.customer_email}</span>
+              <span>{params.data?.customer?.email}</span>
             </div>
           );
         },
       },
       {
         headerName: "Order ID",
-        field: "customer.mobile_no",
+        field: "customer.mobile",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.customer?.mobile_no}</span>
+              <span>{params.data.customer?.mobile}</span>
             </div>
           );
         },
       },
       {
         headerName: "Sort Order",
-        field: "customer.sortorder",
+        field: "product.sortorder",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.customer?.sortorder}</span>
+              <span>{params.data.product?.sortorder}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Order Type",
-        field: "order_type",
+        headerName: "Product Price",
+        field: "product_price",
         filter: true,
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.order_type}</span>
+              <span>{params.data.product_price}</span>
             </div>
           );
         },
       },
+      
+      
+      {
+        headerName: "Product qty",
+        field: "product_qty",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.product_qty}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Size",
+        field: "size",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.size}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Color",
+        field: "color",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.color}</span>
+            </div>
+          );
+        },
+      },
+      
+      {
+        headerName: "Customer OrderId",
+        field: "cus_orderId",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.cus_orderId}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Seller OrderId",
+        field: "seller_orderId",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.seller_orderId}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Shipping Address",
+        field: "shipping_address",
+        filter: true,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.shipping_address}</span>
+            </div>
+          );
+        },
+      },
+      
       {
         headerName: "Payment Type",
         field: "payment_type",
@@ -172,9 +268,8 @@ class AllOrder extends React.Component {
    };
 
   async componentDidMount() {
-    await axiosConfig.get("/getorder").then((response) => {
+    await axiosConfig.get("/orderlist").then((response) => {
       let rowData = response.data.data;
-
       this.setState({ rowData });
     });
   }
