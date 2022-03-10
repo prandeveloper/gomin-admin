@@ -263,6 +263,40 @@ class AllOrder extends React.Component {
           ) : null;
         },
       },
+      // {
+      //   headerName: "Actions",
+      //   field: "sortorder",
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="actions cursor-pointer">
+      //         {/* <Eye
+      //           className="mr-50"
+      //           size="25px"
+      //           color="green"
+      //           onClick={() =>
+      //           history.push(`/app/seller/viewSeller/${params.data._id}`)}
+      //         />
+      //         <Edit
+      //           className="mr-50"
+      //           size="25px"
+      //           color="blue"
+      //           onClick={() => history.push(`/app/seller/editSeller/${params.data._id}`)}
+      //         /> */}
+      //         {/* <Trash2
+      //           className="mr-50"
+      //           size="25px"
+      //           color="Red"
+      //           onClick={() => {
+      //             let selectedData = this.gridApi.getSelectedRows();
+      //             this.runthisfunction(params.data._id);
+      //             this.gridApi.updateRowData({ remove: selectedData });
+      //           }}
+      //         /> */}
+      //       </div>
+      //     );
+      //   },
+      // },
 
     ],
    };

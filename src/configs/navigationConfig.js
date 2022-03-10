@@ -160,7 +160,7 @@ const navigationConfig = [
   },
   {
     id: "order",
-    title: "Orders & Invoices",
+    title: "Orders List",
     type: "collapse",
     icon: <FaShoppingCart size={20} />,
     children: [

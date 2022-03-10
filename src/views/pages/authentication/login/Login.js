@@ -11,6 +11,8 @@ import {
   Col,
   Row,
   Form,
+  TabContent,
+  TabPane,
 } from "reactstrap";
 import classnames from "classnames";
 import logo from "../../../../assets/img/logo/logo.png";
@@ -133,6 +135,13 @@ class Login extends React.Component {
                     <Button.Ripple color="primary" type="submit">
                       Login
                     </Button.Ripple>
+                    <TabContent activeTab={this.state.activeTab}>
+                    <TabPane tabId="1">
+                      <LoginJWT />
+                    </TabPane>
+                    <TabPane tabId="2"><LoginFirebase /></TabPane>
+                    <TabPane tabId="3">{/* <LoginAuth0 /> */}</TabPane>
+                  </TabContent>
                   </div>
                 </Form>
                 </Card>
