@@ -96,7 +96,7 @@
 //     // }
 //     let { id } = this.props.match.params;
 //     axiosConfig
-//       .post(`/editcustomer/${id}`,data )
+//       .post(`/view_onecust/${id}`,data )
 //       .then((response) => {
 //         console.log(response);
 //         this.props.history.push("/app/customer/customerList");
