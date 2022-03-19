@@ -14,7 +14,6 @@ class AnalyticsDashboard extends React.Component {
       store:{},
       seller:{},
       order:{},
-      staff: {},
       banner: {},
       brand: {},
       total_sub: {},

@@ -23,8 +23,9 @@ export class UserProfile extends Component {
   componentDidMount() {
     console.log(this.props.match.params);
     let { id } = this.props.match.params;
+    var user = JSON.parse(localStorage.getItem('userData'));
     axiosConfig
-      .get(`/getoneadmin/${id}`)
+      .get(`/getoneadmin/${user._id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -37,7 +38,7 @@ export class UserProfile extends Component {
         password: response.data.data.password,
         cnfmPassword: response.data.data.cnfmPassword,
         image: response.data.data.image,
-        // status: response.data.data.status,
+        
       });
     })
     .catch((error) => {
@@ -68,8 +69,15 @@ export class UserProfile extends Component {
       data.append("city", this.state.city);
       data.append("password", this.state.password);
       data.append("cnfmPassword", this.state.cnfmPassword);
-      data.append("image", this.state.selectedFile, this.state.selectedName);
+      if (this.state.selectedFile !== null) {
+        data.append(
+          "image",
+          this.state.selectedFile,
+          this.state.selectedName
+        );
+      }
       // data.append("status", this.state.status);
+     
       for (var value of data.values()) {
         console.log(value);
       }
@@ -77,6 +85,7 @@ export class UserProfile extends Component {
         console.log(key);
       }
       let { id } = this.props.match.params;
+      // var user = JSON.parse(localStorage.getItem('userData'));
       axiosConfig
         .post(`/editadmin/${id}`, data)
         .then((response) => {
@@ -152,64 +161,67 @@ render() {
                     <Row>
                       <Col lg="4" md="2" sm="2" className="mb-2">
                         <Label>Country:</Label>
-                          <CustomInput
+                          <Input
                             required
-                            type="select"
+                            type="text"
                             placeholder="Country"
                             name="country"
                             value={this.state.country}
                             onChange={this.changeHandler}
                           >
-                            <option value="country">Country</option>
+                            {/* <option value="country">Country</option>
                             <option value="algeria">Algeria</option>
                             <option value="austria">Austria</option>
                             <option value="canada">Canada</option>
-                            <option value="UK">UK</option>
-                          </CustomInput>
+                            <option value="UK">UK</option> */}
+                          </Input>
                       </Col>
                       <Col lg="4" md="2" sm="2" className="mb-2">
                         <Label>State:</Label>
-                          <CustomInput
+                          <Input
                             required
-                            type="select"
+                            type="text"
                             placeholder="State"
                             name="state"
                             value={this.state.state}
                             onChange={this.changeHandler}
                           >
-                            <option value="state">State</option>
+                            {/* <option value="state">State</option>
                             <option value="mp">MP</option>
                             <option value="goa">Goa</option>
                             <option value="maharashtra">Maharashtra</option>
-                            <option value="gujarat">Gujarat</option>
-                          </CustomInput>
+                            <option value="gujarat">Gujarat</option> */}
+                          </Input>
                       </Col>
                       <Col lg="4" md="2" sm="2" className="mb-2">
                         <Label>City :</Label>
-                          <CustomInput
+                          <Input
                             required
-                            type="select"
+                            type="text"
                             placeholder="City"
                             name="city"
                             value={this.state.city}
                             onChange={this.changeHandler}
                           >
-                            <option value="city">City</option>
+                            {/* <option value="city">City</option>
                             <option value="indore">Indore</option>
                             <option value="sagar">Sagar</option>
                             <option value="jabalpur">Jabalpur</option>
-                            <option value="delhi">Delhi</option>
-                          </CustomInput>
+                            <option value="delhi">Delhi</option> */}
+                          </Input>
                       </Col>
                     </Row>
                     <Col lg="6" md="6" sm="6" className="mb-2">
                       <Label>User Image</Label>
                         <Input 
-                          required type="file" 
+                          required
+                          type="file" 
                           name="image"
                           onChange={this.onChangeHandler} 
                         />
+                        <img src={this.state.image} style={{width:'50px',height:'50px'}}/>
                     </Col>
+                    
                     <Row>
                       <Col lg="6" md="6" sm="6" className="mb-2">
                         <Label>Password:</Label>
@@ -237,14 +249,14 @@ render() {
                     </Row>
                     <Row>
                       <Col lg="6" md="6" sm="6" className="mb-2">
-                        <Button.Ripple   
+                        {/* <Button.Ripple   
                           color="danger"
                           className="mr-1 mb-1 btn-danger-rgba" 
                           type="reset"
                           value="Reset"
                         >
                           Reset
-                        </Button.Ripple>
+                        </Button.Ripple> */}
                         <Button.Ripple
                           color="primary"
                           type="submit"
