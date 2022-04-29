@@ -300,19 +300,19 @@ class SimpleProductList extends React.Component {
           );
         },
       },
-      {
-        headerName: "Stock Avilable",
-        field: "stock",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex justify-content-center">
-              <span>{params.data.stock}</span>
-            </div>
-          );
-        },
-      },
+      // {
+      //   headerName: "Stock Avilable",
+      //   field: "stock",
+      //   filter: true,
+      //   width: 200,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex justify-content-center">
+      //         <span>{params.data.stock}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
         headerName: "Stock Avilable",
         field: "stock",

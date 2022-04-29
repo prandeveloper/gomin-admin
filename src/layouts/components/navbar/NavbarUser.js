@@ -85,7 +85,7 @@ const UserDropdown = (props) => {
               return props.logoutWithFirebase();
             }
           } else {
-            localStorage.removeItem("token");
+            localStorage.removeItem("auth-admintoken");
             localStorage.clear();
             history.push("/pages/login");
           }
@@ -160,7 +160,7 @@ class NavbarUser extends React.PureComponent {
   };
 
   componentDidMount() {
-    let accessToken = localStorage.getItem('token');
+    let accessToken = localStorage.getItem('auth-admintoken');
     if(accessToken === null || accessToken === undefined){
       history.push("/pages/login");
     }
@@ -268,229 +268,14 @@ class NavbarUser extends React.PureComponent {
                   </span>
                 </DropdownToggle>
                 <DropdownMenu right>
-                  {/* <DropdownItem
-                    tag="a"
-                    onClick={e => context.switchLanguage("en")}
-                  >
-                    <ReactCountryFlag className="country-flag" countryCode="us" svg />
-                    <span className="ml-1">English</span>
-                  </DropdownItem> */}
-                  {/* <DropdownItem
-                    tag="a"
-                    onClick={e => context.switchLanguage("fr")}
-                  >
-                    <ReactCountryFlag className="country-flag" countryCode="fr" svg />
-                    <span className="ml-1">French</span>
-                  </DropdownItem> */}
-                  {/* <DropdownItem
-                    tag="a"
-                    onClick={e => context.switchLanguage("de")}
-                  >
-                    <ReactCountryFlag className="country-flag" countryCode="de" svg />
-                    <span className="ml-1">German</span>
-                  </DropdownItem> */}
-                  {/* <DropdownItem
-                    tag="a"
-                    onClick={e => context.switchLanguage("pt")}
-                  >
-                    <ReactCountryFlag className="country-flag" countryCode="pt" svg />
-                    <span className="ml-1">Portuguese</span>
-                  </DropdownItem> */}
+               
                 </DropdownMenu>
               </Dropdown>
             );
           }}
         </IntlContext.Consumer>
 
-        {/* <NavItem className="nav-search" onClick={this.handleNavbarSearch}> */}
-        {/* <NavLink className="nav-link-search">
-            <Icon.Search size={21} data-tour="search" />
-          </NavLink> */}
-        {/* <div
-            className={classnames("search-input", {
-              open: this.state.navbarSearch,
-              "d-none": this.state.navbarSearch === false
-            })}
-          > */}
-        {/* <div className="search-input-icon">
-              <Icon.Search size={17} className="primary" />
-            </div> */}
-        {/* <Autocomplete
-              className="form-control"
-              suggestions={this.state.suggestions}
-              filterKey="title"
-              filterHeaderKey="groupTitle"
-              grouped={true}
-              placeholder="Explore Vuexy..."
-              autoFocus={true}
-              clearInput={this.state.navbarSearch}
-              externalClick={e => {
-                this.setState({ navbarSearch : false })
-              }}
-              onKeyDown={e => {
-                if (e.keyCode === 27 || e.keyCode === 13) {
-                  this.setState({
-                    navbarSearch: false
-                  })
-                  this.props.handleAppOverlay("")
-                }
-              }}
-              customRender={(
-                item,
-                i,
-                filteredData,
-                activeSuggestion,
-                onSuggestionItemClick,
-                onSuggestionItemHover
-              ) => {
-                const IconTag = Icon[item.icon ? item.icon : "X"]
-                return (
-                  <li
-                    className={classnames("suggestion-item", {
-                      active: filteredData.indexOf(item) === activeSuggestion
-                    })}
-                    key={i}
-                    onClick={e => onSuggestionItemClick(item.link, e)}
-                    onMouseEnter={() =>
-                      onSuggestionItemHover(filteredData.indexOf(item))
-                    }
-                  >
-                     <div
-                      className={classnames({
-                        "d-flex justify-content-between align-items-center":
-                          item.file || item.img
-                      })} 
-                    > 
-                       <div className="item-container d-flex">
-                        {item.icon ? (
-                          <IconTag size={17} />
-                        ) : item.file ? (
-                          <img
-                            src={item.file}
-                            height="36"
-                            width="28"
-                            alt={item.title}
-                          />
-                        ) : item.img ? (
-                          <img
-                            className="rounded-circle mt-25"
-                            src={item.img}
-                            height="28"
-                            width="28"
-                            alt={item.title}
-                          />
-                        ) : null}
-                        <div className="item-info ml-1">
-                          <p className="align-middle mb-0">{item.title}</p>
-                          {item.by || item.email ? (
-                            <small className="text-muted">
-                              {item.by
-                                ? item.by
-                                : item.email
-                                ? item.email
-                                : null}
-                            </small>
-                          ) : null}
-                        </div>
-                      </div> 
-                      {item.size || item.date ? (
-                        <div className="meta-container">
-                          <small className="text-muted">
-                            {item.size
-                              ? item.size
-                              : item.date
-                              ? item.date
-                              : null}
-                          </small>
-                        </div>
-                      ) : null}
-                    </div> 
-                  </li>
-                )
-              }}
-              onSuggestionsShown={userInput => {
-                if (this.state.navbarSearch) {
-                  this.props.handleAppOverlay(userInput)
-                }
-              }}
-            /> */}
-        {/* <div className="search-input-close"> */}
-        {/* <Icon.X
-                size={24}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  this.setState({
-                    navbarSearch: false
-                  })
-                  this.props.handleAppOverlay("")
-                }}
-              /> */}
-        {/* </div> */}
-        {/* </div> */}
-        {/* </NavItem> */}
-        {/* <UncontrolledDropdown
-          tag="li"
-          className="dropdown-notification nav-item"
-        > */}
-        {/* <DropdownToggle tag="a" className="nav-link position-relative">
-            <Icon.ShoppingCart size={21} />
-            {this.state.shoppingCart.length > 0 ? (
-              <Badge pill color="primary" className="badge-up">
-                {this.state.shoppingCart.length}
-              </Badge>
-            ) : null}
-          </DropdownToggle> */}
-        {/* <DropdownMenu
-            tag="ul"
-            right
-            className={`dropdown-menu-media dropdown-cart ${
-              this.state.shoppingCart.length === 0 ? "empty-cart" : ""
-            }`}
-          > */}
-        {/* <li
-              className={`dropdown-menu-header ${
-                this.state.shoppingCart.length === 0 ? "d-none" : "d-block"
-              }`}
-            >
-              <div className="dropdown-header m-0">
-                <h3 className="white">
-                  {this.state.shoppingCart.length} Items
-                </h3>
-                <span className="notification-title">In Your Cart</span>
-              </div>
-            </li> */}
-        {/* <PerfectScrollbar
-              className="media-list overflow-hidden position-relative"
-              options={{
-                wheelPropagation: false
-              }}
-            >
-              {renderCartItems}
-            </PerfectScrollbar> */}
-        {/* <li
-              className={`dropdown-menu-footer border-top ${
-                this.state.shoppingCart.length === 0 ? "d-none" : "d-block"
-              }`}
-            >
-              <div
-                className="dropdown-item p-1 text-center text-primary"
-                onClick={() => history.push("/ecommerce/checkout")}
-              >
-                <Icon.ShoppingCart size={15} />
-                <span className="align-middle text-bold-600 ml-50">
-                  Checkout
-                </span>
-              </div>
-            </li> */}
-        {/* <li
-              className={`empty-cart ${
-                this.state.shoppingCart.length > 0 ? "d-none" : "d-block"
-              } p-2`}
-            >
-              Your Cart Is Empty
-            </li>
-          </DropdownMenu>
-        </UncontrolledDropdown> */}
+        
         <UncontrolledDropdown
           tag="li"
           className="dropdown-notification nav-item"

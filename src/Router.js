@@ -187,6 +187,9 @@ const forgotPassword = lazy(() =>
 const resetPassword = lazy(() =>
   import("./views/pages/authentication/ResetPassword")
 );
+const newPassword = lazy(() =>
+  import("./views/pages/authentication/NewPassword")
+);
 
 const sellerSubscription = lazy(() =>
   import("./views/apps/sellerSubs/SellerSubscription")
@@ -669,7 +672,7 @@ class AppRouter extends React.Component {
           {/* <AppRoute path="/pages/logDemo" component={ logDemo} fullLayout /> */}
           <AppRoute path="/pages/login" component={Login} fullLayout />
           <AppRoute
-            path="/pages/forgot-password"
+            path="/pages/forgotpassword"
             component={forgotPassword}
             fullLayout
           />
@@ -677,8 +680,12 @@ class AppRouter extends React.Component {
             path="/pages/reset-password"
             component={resetPassword}
             fullLayout
-          />
-          <AppRoute path="/pages/profile/userProfile" component={userProfile} />
+          /> <AppRoute
+          path="/pages/newPassword"
+          component={newPassword}
+          fullLayout
+        />
+          <AppRoute path="/pages/profile/userProfile/:id" component={userProfile} />
           <AppRoute
             path="/pages/profile/editUserProfile/:id"
             component={editUserProfile}

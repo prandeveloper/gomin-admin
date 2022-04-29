@@ -50,9 +50,10 @@ class Login extends React.Component {
     })
     .then((response) => { 
       console.log(response.data.user);
-      localStorage.setItem("token", response.data.token);
+      console.log(response.data);
+      localStorage.setItem("auth-admintoken", response.data.token);
       localStorage.setItem("userData", JSON.stringify(response.data.user));
-      history.push("/");
+      //history.push("/");
       
     })
     .catch((error) => {
@@ -123,15 +124,15 @@ class Login extends React.Component {
                   </FormGroup>
 
                   <div className="d-flex justify-content-between">
-                    {/* <Button.Ripple
+                    <Button.Ripple
                       color="primary"
                       outline
                       onClick={() => {
-                        history.push("/pages/register");
+                        history.push("/pages/forgotpassword");
                       }}
                     >
-                      Register
-                    </Button.Ripple> */}
+                      Forget Password
+                    </Button.Ripple>
                     <Button.Ripple color="primary" type="submit">
                       Login
                     </Button.Ripple>

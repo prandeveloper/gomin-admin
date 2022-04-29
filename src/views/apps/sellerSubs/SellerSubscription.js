@@ -95,37 +95,37 @@ class SellerSubscription extends React.Component {
           );
         },
       },
-      {
-        headerName: "Sort Order ",
-        field: "sortorder",
-        filter: true,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.sortorder}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Status",
-        field: "status",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "Active" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.status}
-            </div>
-          ) : params.value === "Inactive" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.status}
-            </div>
-          )
-         : null;
-        },
-      },
+      // {
+      //   headerName: "Sort Order ",
+      //   field: "sortorder",
+      //   filter: true,
+      //   width: 200,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.sortorder}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+      // {
+      //   headerName: "Status",
+      //   field: "status",
+      //   filter: true,
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return params.value === "Active" ? (
+      //       <div className="badge badge-pill badge-success">
+      //         {params.data.status}
+      //       </div>
+      //     ) : params.value === "Inactive" ? (
+      //       <div className="badge badge-pill badge-warning">
+      //         {params.data.status}
+      //       </div>
+      //     )
+      //    : null;
+      //   },
+      // },
       {
         headerName: "Actions",
         field: "sortorder",
