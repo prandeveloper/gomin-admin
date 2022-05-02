@@ -685,7 +685,7 @@ class AppRouter extends React.Component {
           component={newPassword}
           fullLayout
         />
-          <AppRoute path="/pages/profile/userProfile/:id" component={userProfile} />
+          <AppRoute path="/pages/profile/userProfile" component={userProfile} />
           <AppRoute
             path="/pages/profile/editUserProfile/:id"
             component={editUserProfile}
