@@ -29,7 +29,7 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-       email: "",
+      //  email: "",
       mobile:"",
       password: "",
     };
@@ -89,7 +89,7 @@ class Login extends React.Component {
                     Welcome back, please login to your account.
                   </p>
                   <Form onSubmit={this.loginHandler}>
-                  <Label>Email</Label>
+                  {/* <Label>Email</Label>
                   <FormGroup className="form-label-group position-relative has-icon-left">
                     <Input
                       type="email"
@@ -99,7 +99,7 @@ class Login extends React.Component {
                       onChange={this.handlechange}
                       required
                     />
-                  </FormGroup>
+                  </FormGroup> */}
                   <Label>Mobile No.</Label>
                   <FormGroup className="form-label-group position-relative has-icon-left">
                     <Input

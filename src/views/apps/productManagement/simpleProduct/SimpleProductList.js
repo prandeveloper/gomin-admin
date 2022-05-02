@@ -243,13 +243,13 @@ class SimpleProductList extends React.Component {
       },
       {
         headerName: "GST Rate",
-        field: "gst",
+        field: "gstrate.gst_title",
         filter: true,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex justify-content-center">
-              <span>{params.data.gst}</span>
+              <span>{params.data.gstrate?.gst_title}</span>
             </div>
           );
         },
@@ -300,28 +300,16 @@ class SimpleProductList extends React.Component {
           );
         },
       },
-      // {
-      //   headerName: "Stock Avilable",
-      //   field: "stock",
-      //   filter: true,
-      //   width: 200,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex justify-content-center">
-      //         <span>{params.data.stock}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+     
       {
-        headerName: "Stock Avilable",
-        field: "stock",
+        headerName: "Selling mode",
+        field: "sell_mode",
         filter: true,
         width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex justify-content-center">
-              <span>{params.data.stock}</span>
+              <span>{params.data.sell_mode}</span>
             </div>
           );
         },
@@ -339,23 +327,23 @@ class SimpleProductList extends React.Component {
           );
         },
       },
-      {
-        headerName: "Status",
-        field: "status",
-        filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return params.value === "Active" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.status}
-            </div>
-          ) : params.value === "Inactive" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.status}
-            </div>
-          ) : null;
-        },
-      },
+      // {
+      //   headerName: "Status",
+      //   field: "status",
+      //   filter: true,
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return params.value === "Active" ? (
+      //       <div className="badge badge-pill badge-success">
+      //         {params.data.status}
+      //       </div>
+      //     ) : params.value === "Inactive" ? (
+      //       <div className="badge badge-pill badge-warning">
+      //         {params.data.status}
+      //       </div>
+      //     ) : null;
+      //   },
+      // },
       {
         headerName: "Actions",
         field: "transactions",
