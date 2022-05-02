@@ -160,8 +160,8 @@ class NavbarUser extends React.PureComponent {
   };
 
   componentDidMount() {
-    let accessToken = localStorage.getItem('auth-admintoken');
-    if(accessToken === null || accessToken === undefined){
+    let accessToken = localStorage.getItem("auth-admintoken");
+    if (accessToken === null || accessToken === undefined) {
       history.push("/pages/login");
     }
     axios.get("/api/main-search/data").then(({ data }) => {
@@ -267,26 +267,23 @@ class NavbarUser extends React.PureComponent {
                     {langArr[context.state.locale]}
                   </span>
                 </DropdownToggle>
-                <DropdownMenu right>
-               
-                </DropdownMenu>
+                <DropdownMenu right></DropdownMenu>
               </Dropdown>
             );
           }}
         </IntlContext.Consumer>
 
-        
         <UncontrolledDropdown
           tag="li"
           className="dropdown-notification nav-item"
         >
-          <DropdownToggle tag="a" className="nav-link nav-link-label">
+          {/* <DropdownToggle tag="a" className="nav-link nav-link-label">
             <Icon.Bell size={21} />
             <Badge pill color="primary" className="badge-up">
               {" "}
               5{" "}
             </Badge>
-          </DropdownToggle>
+          </DropdownToggle> */}
           <DropdownMenu tag="ul" right className="dropdown-menu-media">
             <li className="dropdown-menu-header">
               <div className="dropdown-header mt-0">

@@ -11,111 +11,110 @@ class AnalyticsDashboard extends React.Component {
     this.state = {
       product: {},
       customer: {},
-      store:{},
-      seller:{},
-      order:{},
+      store: {},
+      seller: {},
+      order: {},
       banner: {},
       brand: {},
       total_sub: {},
-      Coupon: {}
+      Coupon: {},
     };
   }
 
-  
-    componentDidMount() {
-      axiosConfig
-        .get("/totalproduct")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ product: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  componentDidMount() {
+    axiosConfig
+      .get("/totalproduct")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ product: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-        axios
-        .get("http://35.154.86.59/api/user/totalcustomer")
-        .then((response) => {
-          console.log(response.data);
-         
-          this.setState({ customer: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalstore")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ store: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      axiosConfig
-        .get("/totalseller")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ seller: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalorder")
-        .then((response) => {
-          console.log(response.data);
-          console.log(response.data.data);
-          this.setState({ order: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalbrand")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ brand: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalbanner")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ banner: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-     
-        axiosConfig
-        .get("/gettotalcoupon")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ Coupon: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/total_sub")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ total_sub: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-   }
+    axios
+      .get("http://35.154.86.59/api/user/totalcustomer")
+      .then((response) => {
+        console.log(response.data);
+
+        this.setState({ customer: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/totalstore")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ store: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/totalseller")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ seller: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/totalorder")
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.data);
+        this.setState({ order: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/totalbrand")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ brand: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/totalbanner")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ banner: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axiosConfig
+      .get("/gettotalcoupon")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ Coupon: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/total_sub")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ total_sub: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   render() {
     return (
       <React.Fragment>
@@ -128,7 +127,7 @@ class AnalyticsDashboard extends React.Component {
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Products
+                Total Products
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
@@ -192,45 +191,39 @@ class AnalyticsDashboard extends React.Component {
             </Card>
           </Col> */}
           <Col lg="3" md="12">
-          <Card className="bg-info" body inverse>
-            <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-              Total Slider
-            </CardTitle>
-            <CardText tag="h3" style={{ color: "white" }}>
-            {this.state.banner.data}
-           
-            </CardText>
-          </Card>
-        </Col>
-        <Col lg="3" md="12">
+            <Card className="bg-info" body inverse>
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+                Total Slider
+              </CardTitle>
+              <CardText tag="h3" style={{ color: "white" }}>
+                {this.state.banner.data}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
             <Card className="bg-danger" body inverse>
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
                 Total Subscription Plan
               </CardTitle>
               <CardText tag="h3" style={{ color: "white" }}>
-              {this.state.total_sub.data}
+                {this.state.total_sub.data}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card className="bg-warning" body inverse>
-            <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-              Total Coupons
-            </CardTitle>
-            <CardText tag="h3" style={{ color: "white" }}>
-            {this.state.Coupon.data}
-            </CardText>
-          </Card>
-        </Col>
-       
+            <Card className="bg-warning" body inverse>
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+                Total Coupons
+              </CardTitle>
+              <CardText tag="h3" style={{ color: "white" }}>
+                {this.state.Coupon.data}
+              </CardText>
+            </Card>
+          </Col>
         </Row>
 
         {/* theme Componets  */}
-        <Row>
-          <Col sm="12">
-            <DispatchedOrders />
-          </Col>
-        </Row>
+
         {/* <Row className="match-height">
           <Col md="6" sm="12">
             <AvgSession labelColor={$label_color} primary={$primary} />
