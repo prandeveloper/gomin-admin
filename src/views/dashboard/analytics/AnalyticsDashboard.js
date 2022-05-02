@@ -180,7 +180,7 @@ class AnalyticsDashboard extends React.Component {
               </CardText>
             </Card>
           </Col>
-          <Col lg="3" md="12">
+          {/* <Col lg="3" md="12">
             <Card className="bg-danger" body inverse>
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
                 Total Brands
@@ -190,7 +190,7 @@ class AnalyticsDashboard extends React.Component {
                 {this.state.brand.data}
               </CardText>
             </Card>
-          </Col>
+          </Col> */}
           <Col lg="3" md="12">
           <Card className="bg-info" body inverse>
             <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>

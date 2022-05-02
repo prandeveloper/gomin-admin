@@ -24,6 +24,8 @@ import LoginFirebase from "./LoginFirebase";
 import LoginJWT from "./LoginJWT";
 import { connect } from "react-redux";
 import axios from "axios";
+import swal from 'sweetalert';
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -52,12 +54,16 @@ class Login extends React.Component {
       console.log(response.data.user);
       console.log(response.data);
       localStorage.setItem("auth-admintoken", response.data.token);
+      swal("Successful!", "You clicked the button!", "success");
       localStorage.setItem("userData", JSON.stringify(response.data.user));
-      //history.push("/");
+      history.push("/");
       
     })
     .catch((error) => {
+
       console.log(error.response);
+      swal("error!", "Invalied! Please enter valied Phone No. or Password", "error");
+
     });
 };
 
